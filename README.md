@@ -37,5 +37,24 @@ Data is first scraped using the **Yelp API**, stored in **DynamoDB** for quick a
 [Script](src/script/extract_load.py) contains the script used to accomplish this.
 
 
+## Setup
+
+* Create an API from the [api.yaml](api/api.yaml) with [lf0](src/lambda/lf0.py) integration at AmazonAPIGateway and follow the steps [here](web/)
+* Create a S3 bucket to host the website 
+* Create a SQS queue 'hw1_dining'
+* Create a lex box with [lf1](src/lambda/lf1.py) as a code hook with the following intents
+  * GreetingIntent
+  * ThankYouIntent
+  * DiningSuggestionsIntent collects the following information from the user
+    * Location
+    * Cuisine
+    * Dining Time
+    * Number of people
+    * Phone number
+* Create an elastic search service
+* Run the script to load dynamo and elastic search
+* Create a cloud watch trigger that invokes [lf2](src/lambda/lf2)
+
+
 
 

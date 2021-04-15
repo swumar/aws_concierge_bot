@@ -29,12 +29,12 @@ Following services were used in building this application out
 * **Lambda** hosts many functions, one of them is [entry](src/lambda/lf0.py) which acts as an interface between the user and **Lex**
 * [lex-validation](src/lambda/lf1.py) is another **Lambda** function that works with **Lex** to validate input and finally send the gathered information to an **SQS** queue
 * Every minute through **CloudWatch** events we trigger another **Lambda**, [recommendations](lambdas/recommendations.py].
-* [recommendations](src/lambda/lf1) uses the data from the **SQS** entry to search for relevant results using **Elastic Search** and get detailed information about the restaurants from **DynamoDB**.
+* [recommendations](src/lambda/lf2) uses the data from the **SQS** entry to search for relevant results using **Elastic Search** and get detailed information about the restaurants from **DynamoDB**.
 * Then it constructs and sends a text message filled with recommendations to the user using **SNS**
 
 NOTE:
 Data is first scraped using the **Yelp API**, stored in **DynamoDB** for quick access and indexed in **Elastic Search** for quick search.
-[Script](script) contains the script used to accomplish this.
+[Script](src/script/extract_load.py) contains the script used to accomplish this.
 
 
 
